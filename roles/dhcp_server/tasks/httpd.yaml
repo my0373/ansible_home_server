@@ -1,0 +1,48 @@
+---
+
+  - name: Install httpd
+    yum:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - "httpd"
+    become: yes
+
+  - name: enable HTTPD
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+    become: yes
+    notify: restart httpd
+
+
+  #- name: link images directory
+  #  file:
+  #    src: "/media/images"
+  #    dest: "/var/www/html/images"
+  #    state: link
+
+  - name: Copy the iso file over
+    copy:
+      src: /Users/myork/ISO/rhel-server-7.5-x86_64-dvd.iso
+      dest: /media/images/rhel-server-7.5-x86_64-dvd.iso
+      follow: yes
+      force: no
+      owner: root
+      group: root
+      mode: u+r,g-r,o-rwx
+    become: yes
+
+  - name: Creates directory
+    file: path=/var/www/html/images/rhel7 state=directory
+
+  - name: Mount the ISO
+    mount:
+      path: /var/www/html/images/rhel7
+      src: /media/images/rhel-server-7.5-x86_64-dvd.iso
+      fstype: iso9660
+      opts: loop
+      state: present
+    become: yes
+    tags: ['mount']

@@ -1,0 +1,26 @@
+---
+  - debug:
+      msg: "Called this module"
+
+  - name: Ensure the firewall is enabled
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
+    become: yes
+    notify: restart firewalld
+    tags: ['firewalld']
+
+  - name: Open the required ports
+    firewalld:
+      port: "{{ item }}"
+      permanent: true
+      state: enabled
+    with_items: "{{ firewall_ports }}"
+    become: yes
+    tags: ['firewalld']
+
+
+
+
+

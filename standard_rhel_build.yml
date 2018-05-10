@@ -1,0 +1,9 @@
+---
+- name: Attempt to standardise the RHEL system
+  hosts:  all
+  remote_user: ansible
+  roles:
+    - { role: standard_rhel_build }
+
+
+

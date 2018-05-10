@@ -1,0 +1,24 @@
+---
+  - name: install the required IDM packages
+    yum:
+      name: "{{ item }}"
+      state: latest
+    become: yes
+    with_items: "{{ idm_packages }}"
+
+  - name: Deploy IDM install script
+    template:
+      src: idm-install.sh.j2
+      dest: /root/idm-install.sh
+      owner: root
+      group: root
+      mode: 0700
+    become: yes
+    tags: ['idm']
+
+  - name: Install IDM
+    command: /root/idm-install.sh
+    args:
+      creates: /etc/ipa/default.conf
+    become: yes
+    tags: ['idm']

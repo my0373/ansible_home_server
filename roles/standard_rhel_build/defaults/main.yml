@@ -1,0 +1,13 @@
+---
+redhat_user: redhat_user
+redhat_password: redhat_password
+extra_packages:
+    -  "vim"
+    -  "tree"
+
+ntp_servers:
+    - "192.168.0.254"
+
+firewall_ports:
+    -   "443/tcp"
+    -   "53/udp"

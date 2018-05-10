@@ -1,0 +1,7 @@
+---
+  ## Unsubscribe the system
+  - redhat_subscription:
+      state: absent
+    become: yes
+
+

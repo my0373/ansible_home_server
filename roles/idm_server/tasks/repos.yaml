@@ -1,0 +1,17 @@
+---
+  # Example removing a repository and cleaning up metadata cache
+  - name: Disable all repos
+    yum_repository:
+      name: "*"
+      state: absent
+    become: yes
+    notify: yum-clean-metadata
+
+  - name: Enable rhel repos
+    yum_repository:
+      name: "rhel-7-server-rpms"
+      state: absent
+    become: yes
+    notify: yum-clean-metadata
+    with_items: "{{ redhat_repos }}"
+

@@ -1,0 +1,10 @@
+---
+  - selinux:
+      policy: targeted
+      state: enforcing
+    become: yes
+
+
+
+
+

@@ -1,0 +1,15 @@
+---
+  - name: Disable all RHSM repositories
+    rhsm_repository:
+      name: '*'
+      state: disabled
+    become: yes
+
+  - name: Enable a RHSM repository
+    rhsm_repository:
+      name: "{{ item }}"
+    become: yes
+    notify: yum-clean-metadata
+    with_items: "{{ redhat_repos }}"
+
+

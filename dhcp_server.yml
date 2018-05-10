@@ -1,0 +1,9 @@
+---
+- name: Rebuild my home management (PXE/TFTP )
+  hosts:  dhcp
+  remote_user: root
+  roles:
+    - { role: dhcp_server }
+
+
+

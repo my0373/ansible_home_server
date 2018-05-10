@@ -1,0 +1,9 @@
+---
+- name: Rebuild my home management (PXE/TFTP )
+  hosts:  pxe
+  remote_user: root
+  roles:
+    - { role: pxe_tftp_server }
+
+
+

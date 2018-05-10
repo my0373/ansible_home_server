@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+/usr/sbin/ipa-server-install  \
+--unattended  \
+--ds-password={{ idm_password }}  \
+--admin-password={{ idm_password }}  \
+--ip-address={{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}  \
+--domain={{ ansible_domain }}  \
+--realm={{ ansible_domain|upper }}  \
+--hostname={{ ansible_fqdn }}  \
+--setup-dns  \
+{% for dns_forwarder in dns_forwarders %}
+--forwarder={{ dns_forwarder }} \
+{% endfor %}
+--auto-reverse

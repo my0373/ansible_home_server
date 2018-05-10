@@ -1,0 +1,25 @@
+---
+
+  #- name: "Subscribe the system"
+  #  include_tasks: subscribe.yaml
+  #  tags: ['subscribe']
+
+  #- name: "Enable only the RHEL7 repos"
+  #  include_tasks: repos.yaml
+  #ßß  tags: ['repos']
+
+  - name: "Add hosts line"
+    include_tasks: hosts.yaml
+    tags: ['hosts']
+
+  - name: "Configure IDM"
+    include_tasks: idm_server.yaml
+    tags: ['idm']
+
+  - name: "Configure IDM DNS zone"
+    include_tasks: ipa_dns.yaml
+    tags: ['dns_zone']
+
+  #- name: "Unsubscribe the system"
+  #  include_tasks: unsubscribe.yaml
+  #  tags: ['unsubscribe']

@@ -1,0 +1,10 @@
+---
+  ## Subscribe the system
+  - redhat_subscription:
+      state: present
+      username: "{{ redhat_user }}"
+      password: "{{ redhat_password }}"
+      auto_attach: yes
+    become: yes
+
+

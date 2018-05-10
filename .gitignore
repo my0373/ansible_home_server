@@ -1,0 +1,7 @@
+*.retry
+.idea
+*.pyc
+*.key
+*.pub
+inventory
+group_vars

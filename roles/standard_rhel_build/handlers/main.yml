@@ -1,0 +1,21 @@
+---
+# handlers file for standard_rhel_build
+# Handler showing how to clean yum metadata cache
+- name: yum-clean-metadata
+  command: yum clean metadata
+  args:
+    warn: no
+
+- name: restart ntpd
+  service:
+    name: ntpd
+    state: restarted
+    enabled: yes
+  become: yes
+
+- name: restart firewalld
+  service:
+    name: firewalld
+    state: restarted
+    enabled: yes
+  become: yes

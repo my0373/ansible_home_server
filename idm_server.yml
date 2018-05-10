@@ -1,0 +1,9 @@
+---
+- name: Rebuild my home management (DHCP/PXE/TFTP, Tower, IDM, KVM server)
+  hosts:  idm
+  remote_user: ansible
+  roles:
+    - { role: idm_server }
+
+
+

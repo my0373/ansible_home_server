@@ -1,0 +1,115 @@
+---
+  - name: Configure IPA DNS zone
+    ipa_dnszone:
+      zone_name:  "0.168.192.in-addr.arpa."
+      ipa_host:   "idm.home.local"
+      ipa_user:   "admin"
+      ipa_pass:   "Redhat123"
+      state: present
+    tags: ['dns_zone']
+
+  # Ensure a PTR record is present
+  - name: Add DNS record
+    ipa_dnsrecord:
+      ipa_host: "idm.home.local"
+      ipa_user: "admin"
+      ipa_pass: "Redhat123"
+      state: present
+      zone_name: "0.168.192.in-addr.arpa"
+      record_name: 3
+      record_type: 'PTR'
+      record_value: 'micro.home.local.'
+    tags: ['dns_zone']
+
+      # Ensure a PTR record is present
+  - name: Add DNS record
+    ipa_dnsrecord:
+      ipa_host: "idm.home.local"
+      ipa_user: "admin"
+      ipa_pass: "Redhat123"
+      state: present
+      zone_name: "home.local."
+      record_name: micro
+      record_type: 'A'
+      record_value: '192.168.0.3'
+    tags: ['dns_zone']
+
+
+  # Ensure a PTR record is present
+  - name: Add DNS record
+    ipa_dnsrecord:
+      ipa_host: "idm.home.local"
+      ipa_user: "admin"
+      ipa_pass: "Redhat123"
+      state: present
+      zone_name: "0.168.192.in-addr.arpa"
+      record_name: 4
+      record_type: 'PTR'
+      record_value: 'pxe.home.local.'
+    tags: ['dns_zone']
+
+      # Ensure a PTR record is present
+  - name: Add DNS record
+    ipa_dnsrecord:
+      ipa_host: "idm.home.local"
+      ipa_user: "admin"
+      ipa_pass: "Redhat123"
+      state: present
+      zone_name: "home.local."
+      record_name: pxe
+      record_type: 'A'
+      record_value: '192.168.0.4'
+    tags: ['dns_zone']
+
+
+  # Ensure a PTR record is present
+  - name: Add DNS record
+    ipa_dnsrecord:
+      ipa_host: "idm.home.local"
+      ipa_user: "admin"
+      ipa_pass: "Redhat123"
+      state: present
+      zone_name: "0.168.192.in-addr.arpa"
+      record_name: 254
+      record_type: 'PTR'
+      record_value: 'router.home.local.'
+    tags: ['dns_zone']
+
+  # Ensure a PTR record is present
+  - name: Add DNS record
+    ipa_dnsrecord:
+      ipa_host: "idm.home.local"
+      ipa_user: "admin"
+      ipa_pass: "Redhat123"
+      state: present
+      zone_name: "home.local."
+      record_name: router
+      record_type: 'A'
+      record_value: '192.168.0.254'
+    tags: ['dns_zone']
+
+      # Ensure a PTR record is present
+  - name: Add DNS record
+    ipa_dnsrecord:
+      ipa_host: "idm.home.local"
+      ipa_user: "admin"
+      ipa_pass: "Redhat123"
+      state: present
+      zone_name: "0.168.192.in-addr.arpa"
+      record_name: 241
+      record_type: 'PTR'
+      record_value: 'timmy.home.local.'
+    tags: ['dns_zone']
+
+      # Ensure a PTR record is present
+  - name: Add DNS record
+    ipa_dnsrecord:
+      ipa_host: "idm.home.local"
+      ipa_user: "admin"
+      ipa_pass: "Redhat123"
+      state: present
+      zone_name: "home.local."
+      record_name: timmy
+      record_type: 'A'
+      record_value: '192.168.0.241'
+    tags: ['dns_zone']

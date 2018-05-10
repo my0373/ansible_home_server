@@ -1,0 +1,33 @@
+---
+
+  - name: "Subscribe the system"
+    include_tasks: subscribe.yaml
+    tags: ['subscribe']
+
+  - name: "Enable only the RHEL7 repos"
+    include_tasks: repos.yaml
+    tags: ['repos']
+
+  - name: "Add hosts line"
+    include_tasks: hosts.yaml
+    tags: ['hosts']
+
+  - name: "Enforce selinux"
+    include_tasks: selinux.yaml
+    tags: ['selinux']
+
+  - name: "Update the system"
+    include_tasks: update.yaml
+    tags: ['update']
+
+  - name: "Configure NTP"
+    include_tasks: ntp.yaml
+    tags: ['ntp']
+
+  - name: "Configure FirewallD"
+    include_tasks: firewalld.yaml
+    tags: ['firewalld']
+
+  #- name: "Unsubscribe the system"
+  #  include_tasks: unsubscribe.yaml
+  #  tags: ['unsubscribe']

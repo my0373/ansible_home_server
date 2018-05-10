@@ -1,0 +1,31 @@
+---
+  - name: Install the TFTP server
+    yum:
+      name: tftp-server
+      state: latest
+    tags: ['tftp']
+
+  - name: Ensure the firewall is enabled
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
+    become: yes
+    notify: restart firewalld
+    tags: ['tftp']
+
+  - name: Open the required ports
+    firewalld:
+      port: "{{ item }}"
+      permanent: true
+      state: enabled
+    with_items: "{{ firewall_ports }}"
+    become: yes
+    tags: ['tftp']
+
+  - name: Creates /ISO directory
+    file: path=/ISO state=directory
+    tags: ['tftp']
+
+
+

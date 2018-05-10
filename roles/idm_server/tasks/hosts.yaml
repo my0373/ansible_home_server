@@ -1,0 +1,19 @@
+---
+
+
+  - name: clean up our entry from the hosts file
+    lineinfile:
+      dest: /etc/hosts
+      state: absent
+      regexp: "^.*{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+    become: yes
+    tags: ['hosts']
+
+  - name: Make sure our host is in the hosts file
+    lineinfile:
+      dest: /etc/hosts
+      state: present
+      line: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }} {{ inventory_hostname }}              # This entry is managed by Ansible."
+    become: yes
+    tags: ['hosts']
+
